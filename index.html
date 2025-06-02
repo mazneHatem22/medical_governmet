@@ -29,11 +29,19 @@
         .header-bg {
             background: linear-gradient(135deg, #065f46 0%, #047857 100%);
         }
+        .img-group{
+            width: 80px;
+        }
+        .app-img{
+            background-color: white;
+            border-radius: 50%;
+            width: 80px;
+        }
         
-        .app-icon {
+        /* .app-icon {
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-        }
+        } */
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -103,7 +111,7 @@
             </div>
         </div>
     </footer>
-
+<!-- <i class="${app.icon} text-2xl"></i> -->
     <script>
         // Sample applications data
     const applications = [
@@ -111,7 +119,7 @@
         name: "(زامو)",
         nameEn: "ZAMW",
         description: "نظام إدارة مياه الشرب والصرف الصحي",
-        icon: "fas fa-tint",
+        img: "image/zamw2.png",
         category: "خدمات بيئية",
         link: "https://play.google.com/store/apps/details?id=com.econnect.zamw",
         iosLink: "https://apps.apple.com/eg/app/zamw/id6477793222"
@@ -120,7 +128,7 @@
         name: "( آى كونكت السودان )",
         nameEn: "iConnect Sudan",
         description: "منصة التواصل والخدمات الطبية",
-        icon: "image/iconnect.jpg",
+        img: "image/iconnect.jpg",
         category: "اتصالات",
         link: "https://play.google.com/store/apps/details?id=com.econnect.siconnect",
         iosLink: "https://apps.apple.com/eg/app/sudan-iconnect/id6670220168"
@@ -129,7 +137,7 @@
         name: "( كير كونكت السودان )",
         nameEn: "Care Connect Sudan",
         description: "نظام الرعاية الصحية المتكامل",
-        icon: "fas fa-heartbeat",
+        img: "image/care-connect.jpg",
         category: "رعاية صحية",
         link: "https://play.google.com/store/apps/details?id=com.econnect.scare",
         iosLink: "https://apps.apple.com/eg/app/sudan-care/id6670220019"
@@ -208,8 +216,8 @@
         <div class="app-card rounded-2xl p-6 text-white shadow-lg cursor-pointer"
              onclick="openApp('${app.nameEn}')">
             <div class="flex flex-col items-center text-center">
-                <div class="app-icon w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                    <i class="${app.icon} text-2xl"></i>
+                <div class="img-group w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                    <img class="app-img" src="${app.img}" alt="">
                 </div>
                 <h3 class="font-bold text-lg mb-2">${app.nameEn} ${app.name}</h3>
                 <p class="text-green-100 text-sm mb-3">${app.description}</p>
