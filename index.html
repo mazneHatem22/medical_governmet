@@ -107,95 +107,52 @@
     <script>
         // Sample applications data
         const applications = [
-            {
-                name: "(زامو)",
-                nameEn: "ZAMW",
-                description: "نظام إدارة مياه الشرب والصرف الصحي",
-                icon: "fas fa-tint",
-                category: "خدمات بيئية",
-                 link: "https://play.google.com/store/apps/details?id=com.econnect.zamw"
+    {
+        name: "(زامو)",
+        nameEn: "ZAMW",
+        description: "نظام إدارة مياه الشرب والصرف الصحي",
+        icon: "fas fa-tint",
+        category: "خدمات بيئية",
+        link: "https://play.google.com/store/apps/details?id=com.econnect.zamw",
+        iosLink: "https://apps.apple.com/app/id1234567890"
+    },
+    {
+        name: "( آى كونكت السودان )",
+        nameEn: "iConnect Sudan",
+        description: "منصة التواصل والخدمات الطبية",
+        icon: "fas fa-network-wired",
+        category: "اتصالات",
+        link: "https://play.google.com/store/apps/details?id=com.econnect.siconnect",
+        iosLink: "https://apps.apple.com/app/id2345678901"
+    },
+    {
+        name: "( كير كونكت السودان )",
+        nameEn: "Care Connect Sudan",
+        description: "نظام الرعاية الصحية المتكامل",
+        icon: "fas fa-heartbeat",
+        category: "رعاية صحية",
+        link: "https://play.google.com/store/apps/details?id=com.econnect.scare",
+        iosLink: "https://apps.apple.com/app/id3456789012"
+    },
+];
 
-            },
-            {
-                name: "( آى كونكت السودان )",
-                nameEn: "iConnect Sudan",
-                description: "منصة التواصل والخدمات الطبية",
-                icon: "fas fa-network-wired",
-                category: "اتصالات",
-                link: "https://play.google.com/store/apps/details?id=com.econnect.siconnect"
-            },
-            {
-                name: "( كير كونكت السودان )" ,
-                nameEn: "Care Connect Sudan",
-                description: "نظام الرعاية الصحية المتكامل",
-                icon: "fas fa-heartbeat",
-                category: "رعاية صحية",
-                 link: "https://play.google.com/store/apps/details?id=com.econnect.scare"
-            },
-            // {
-            //     name: "صحتي",
-            //     nameEn: "Sehhaty",
-            //     description: "التطبيق الرسمي للخدمات الصحية",
-            //     icon: "fas fa-mobile-alt",
-            //     category: "صحة"
-            // },
-            // {
-            //     name: "توكلنا",
-            //     nameEn: "Tawakkalna",
-            //     description: "التطبيق الرسمي للحكومة السعودية",
-            //     icon: "fas fa-shield-alt",
-            //     category: "حكومي"
-            // },
-            // {
-            //     name: "مرصد",
-            //     nameEn: "Marsad",
-            //     description: "نظام مراقبة الأمراض والأوبئة",
-            //     icon: "fas fa-chart-line",
-            //     category: "مراقبة"
-            // },
-            // {
-            //     name: "التطعيمات",
-            //     nameEn: "Vaccinations",
-            //     description: "نظام إدارة التطعيمات والمطاعيم",
-            //     icon: "fas fa-syringe",
-            //     category: "تطعيمات"
-            // },
-            // {
-            //     name: "الأدوية",
-            //     nameEn: "Medications",
-            //     description: "دليل الأدوية والصيدليات",
-            //     icon: "fas fa-pills",
-            //     category: "أدوية"
-            // },
-            // {
-            //     name: "الطوارئ",
-            //     nameEn: "Emergency",
-            //     description: "خدمات الطوارئ الطبية",
-            //     icon: "fas fa-ambulance",
-            //     category: "طوارئ"
-            // },
-            // {
-            //     name: "المواعيد",
-            //     nameEn: "Appointments",
-            //     description: "حجز المواعيد الطبية",
-            //     icon: "fas fa-calendar-check",
-            //     category: "مواعيد"
-            // },
-            // {
-            //     name: "التقارير الطبية",
-            //     nameEn: "Medical Reports",
-            //     description: "عرض وإدارة التقارير الطبية",
-            //     icon: "fas fa-file-medical",
-            //     category: "تقارير"
-            // },
-            // {
-            //     name: "التأمين الصحي",
-            //     nameEn: "Health Insurance",
-            //     description: "خدمات التأمين الصحي",
-            //     icon: "fas fa-user-shield",
-            //     category: "تأمين"
-            // }
-        ];
+$(document).ready(function () {
+    // Detect iOS
+    const userAgent = window.navigator.userAgent;
+    const platform = window.navigator.platform;
+    const iosPlatforms = ['iPhone', 'iPad', 'iPod'];
+    const isIOS = iosPlatforms.indexOf(platform) !== -1;
+
+    // Loop through the applications and bind click events dynamically
+    applications.forEach((app, index) => {
+        $(`#link${index}`).on('click', function (e) {
+            e.preventDefault();
+            const url = isIOS ? app.iosLink : app.link;
+            window.open(url, '_blank');
+        });
+    });
+});
+
 
         // Function to create app card HTML
         function createAppCard(app) {
