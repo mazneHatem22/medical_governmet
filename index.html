@@ -136,16 +136,7 @@
     },
 ];
 
-// detect iOS
-const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-function openApp(nameEn) {
-    const app = applications.find(a => a.nameEn === nameEn);
-    if (!app) return;
-
-    const url = isIOS ? app.iosLink : app.link;
-    window.open(url, '_blank');
-}
 
 
         // Function to create app card HTML
@@ -233,6 +224,17 @@ function openApp(nameEn) {
                 });
             }, 100);
         });
+
+        // detect iOS
+const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+function openApp(nameEn) {
+    const app = applications.find(a => a.nameEn === nameEn);
+    if (!app) return;
+
+    const url = isIOS ? app.iosLink : app.link;
+    window.open(url, '_blank');
+}
     </script>
 </body>
 </html>
