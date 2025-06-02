@@ -136,22 +136,7 @@
     },
 ];
 
-$(document).ready(function () {
-    // Detect iOS
-    const userAgent = window.navigator.userAgent;
-    const platform = window.navigator.platform;
-    const iosPlatforms = ['iPhone', 'iPad', 'iPod'];
-    const isIOS = iosPlatforms.indexOf(platform) !== -1;
 
-    // Loop through the applications and bind click events dynamically
-    applications.forEach((app, index) => {
-        $(`#link${index}`).on('click', function (e) {
-            e.preventDefault();
-            const url = isIOS ? app.iosLink : app.link;
-            window.open(url, '_blank');
-        });
-    });
-});
 
 
         // Function to create app card HTML
@@ -240,6 +225,22 @@ $(document).ready(function () {
                 });
             }, 100);
         });
+        $(document).ready(function () {
+    // Detect iOS
+    const userAgent = window.navigator.userAgent;
+    const platform = window.navigator.platform;
+    const iosPlatforms = ['iPhone', 'iPad', 'iPod'];
+    const isIOS = iosPlatforms.indexOf(platform) !== -1;
+
+    // Loop through the applications and bind click events dynamically
+    applications.forEach((app, index) => {
+        $(`#link${index}`).on('click', function (e) {
+            e.preventDefault();
+            const url = isIOS ? app.iosLink : app.link;
+            window.open(url, '_blank');
+        });
+    });
+});
     </script>
 </body>
 </html>
