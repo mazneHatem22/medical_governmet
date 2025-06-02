@@ -106,7 +106,7 @@
 
     <script>
         // Sample applications data
-       const applications = [
+    const applications = [
     {
         name: "(زامو)",
         nameEn: "ZAMW",
@@ -114,7 +114,7 @@
         icon: "fas fa-tint",
         category: "خدمات بيئية",
         link: "https://play.google.com/store/apps/details?id=com.econnect.zamw",
-        iosLink: "https://apps.apple.com/app/id1234567890" // غيّر الـ ID لللينك الحقيقي
+        iosLink: "https://apps.apple.com/eg/app/zamw/id6477793222"
     },
     {
         name: "( آى كونكت السودان )",
@@ -123,7 +123,7 @@
         icon: "fas fa-network-wired",
         category: "اتصالات",
         link: "https://play.google.com/store/apps/details?id=com.econnect.siconnect",
-        iosLink: "https://apps.apple.com/app/id2345678901"
+        iosLink: "https://apps.apple.com/eg/app/sudan-iconnect/id6670220168"
     },
     {
         name: "( كير كونكت السودان )",
@@ -132,37 +132,39 @@
         icon: "fas fa-heartbeat",
         category: "رعاية صحية",
         link: "https://play.google.com/store/apps/details?id=com.econnect.scare",
-        iosLink: "https://apps.apple.com/app/id3456789012"
+        iosLink: "https://apps.apple.com/eg/app/sudan-care/id6670220019"
     },
 ];
 
-const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+// detect iOS
+const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-function openAppLink(index) {
-    const app = applications[index];
+function openApp(nameEn) {
+    const app = applications.find(a => a.nameEn === nameEn);
+    if (!app) return;
+
     const url = isIOS ? app.iosLink : app.link;
-    window.open(url, "_blank");
+    window.open(url, '_blank');
 }
 
 
         // Function to create app card HTML
         function createAppCard(app) {
-            return `
-           <a href="${app.link}" target="_blank">
-             <div class="app-card rounded-2xl p-6 text-white shadow-lg cursor-pointer" onclick="openApp('${app.nameEn}')">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="app-icon w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                            <i class="${app.icon} text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2">${app.nameEn} ${app.name}</h3>
-                        <p class="text-green-100 text-sm mb-3">${app.description}</p>
-                        <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">${app.category}</span>
-                    </div>
+    return `
+        <div class="app-card rounded-2xl p-6 text-white shadow-lg cursor-pointer"
+             onclick="openApp('${app.nameEn}')">
+            <div class="flex flex-col items-center text-center">
+                <div class="app-icon w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                    <i class="${app.icon} text-2xl"></i>
                 </div>
-            </a>
-               
-            `;
-        }
+                <h3 class="font-bold text-lg mb-2">${app.nameEn} ${app.name}</h3>
+                <p class="text-green-100 text-sm mb-3">${app.description}</p>
+                <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">${app.category}</span>
+            </div>
+        </div>
+    `;
+}
+
 
         // Function to render applications
         function renderApps(apps) {
